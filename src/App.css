@@ -1,0 +1,74 @@
+.App {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.App-header {
+  background-color: #34495e;
+  height: 300px;
+  color: white;
+}
+
+.App-logo {
+  margin-left: auto;
+  margin-right: auto;
+  height: 54%;
+}
+
+.App-title {
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+.colpicker {
+  width: 80%;
+  margin-top: 12px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  flexWrap: wrap;
+  justify-content: center;
+}
+
+.paperInp {
+  width: 90%;
+  height: auto;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+  text-align: center;
+  display: inline-block;
+}
+
+.tableDiv {
+  margin-top: 20px;
+  margin-left: 40px;
+}
+
+.chartDiv {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  background: #fdfdfd;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
+  border-radius: 1px;
+}
+
+.paperChart {
+  width: 800px;
+  height: 410px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+  text-align: center;
+  display: inline-block;
+}
