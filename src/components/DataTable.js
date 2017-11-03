@@ -27,7 +27,7 @@ class DataTable extends Component {
 
     this.cellEditMode = {
       mode: 'click',
-      // beforeSaveCell: this.onBeforeSaveCell, // a hook for before saving cell
+      beforeSaveCell: this.onBeforeSaveCell, // a hook for before saving cell
       afterSaveCell: this.onAfterSaveCell  // a hook for after saving cell
     };
 
