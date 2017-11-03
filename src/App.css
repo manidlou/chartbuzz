@@ -57,7 +57,7 @@
 
 .chartDiv {
   margin-top: 20px;
-  margin-bottom: 40px;
+  margin-bottom: 80px;
   background: #fdfdfd;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
   border-radius: 1px;
@@ -71,4 +71,18 @@
   padding: 10px;
   text-align: center;
   display: inline-block;
+}
+
+.footertxt {
+  margin-top: 20px;
+}
+
+.footerDiv {
+  text-align: center;
+  background: rgba(208, 210, 209, 0.5);
+  position: fixed;
+  height: 60px;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }

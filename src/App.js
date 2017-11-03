@@ -257,6 +257,7 @@ class App extends Component {
 
     return (
       <div className="App">
+        <div className="main">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <img src={titleLogo} className="App-title" alt="logo2" />
@@ -334,6 +335,12 @@ class App extends Component {
           }
           </Rnd>
         </div>
+        </div>
+        <footer className="footerDiv">
+	       <div className="footertxt">
+		       made with ♥ by <a href="https://github.com/manidlou/chartbuzz" target="_blank" rel="noopener noreferrer">Mani Maghsoudlou</a>
+	       </div>
+        </footer>
       </div>
     );
   }
