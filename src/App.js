@@ -114,11 +114,11 @@ class App extends Component {
       if (r) {
         Object.keys(r).filter(k => dsProps.indexOf(k) < 0).forEach(k => rowDat.push(r[k]));
         if (chartType === 'Doughnut' || chartType === 'Pie' || chartType === 'Polar') {
-          const bgcols = [];
+          const bgCols = [];
           for (var i = 0; i < rowDat.length; i += 1) {
-            bgcols.push(colors[i].borderColor);
+            bgCols.push(colors[i].borderColor);
           }
-          datasets.push({hoverBackgroundColor: bgcols, backgroundColor: bgcols, data: rowDat});
+          datasets.push({hoverBackgroundColor: bgCols, backgroundColor: bgCols, data: rowDat});
         } else {
           datasets.push({label: r.label, fill: r.fill, borderColor: r.borderColor, backgroundColor: r.bgColor, data: rowDat});
         }

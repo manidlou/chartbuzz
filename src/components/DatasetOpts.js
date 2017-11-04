@@ -31,8 +31,8 @@ const style = {
 const bgCols = {
   '#f44336': 'rgba(244,67,54, 0.2)',
   '#e91e63': 'rgba(244,67,54, 0.2)',
-  '#9c27b0': 'rgba(156,39,176, 0.2)',
   '#673ab7': 'rgba(103,58,183, 0.2)',
+  '#9c27b0': 'rgba(156,39,176, 0.2)',
   '#3f51b5': 'rgba(63,81,181, 0.2)',
   '#2196f3': 'rgba(33,150,243, 0.2)',
   '#03a9f4': 'rgba(3,169,244, 0.2)',
@@ -91,12 +91,13 @@ class DatasetOpts extends Component {
     const inps = (
       <div>
         <TextField
-    hintText="dataset label.."
-    floatingLabelText="dataset label"
-    name="datasetLabel"
-    value={this.state.datasetLabel}
-    onChange={this.handleChange}/>
-    <br />
+          hintText="dataset label.."
+          floatingLabelText="dataset label"
+          name="datasetLabel"
+          value={this.state.datasetLabel}
+          onChange={this.handleChange}
+        />
+        <br />
 
     {this.state.chartType === 'Line' ? (
       <div style={style.checkboxDiv}>
