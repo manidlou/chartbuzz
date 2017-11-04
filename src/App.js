@@ -337,9 +337,9 @@ class App extends Component {
         </div>
         </div>
         <footer className="footerDiv">
-	       <div className="footertxt">
+	        <div className="footertxt">
 		       made with ♥ by <a href="https://github.com/manidlou/chartbuzz" target="_blank" rel="noopener noreferrer">Mani Maghsoudlou</a>
-	       </div>
+          </div>
         </footer>
       </div>
     );

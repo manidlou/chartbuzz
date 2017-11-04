@@ -75,6 +75,7 @@
 }
 
 .footertxt {
+  float: center;
   margin-top: 20px;
 }
 
