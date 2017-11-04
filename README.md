@@ -9,12 +9,8 @@ It is already up and running and everyone is welcome to use it! However, it is a
 
 ![demo](/doc-imgs/demo.gif?raw=true)
 
-### Sample Screenshots
+#### Sample Screenshots
 
 ![screenshot0](/doc-imgs/0.png?raw=true)
 ![screenshot1](/doc-imgs/1.png?raw=true)
 ![screenshot2](/doc-imgs/2.png?raw=true)
-![screenshot3](/doc-imgs/3.png?raw=true)
-![screenshot4](/doc-imgs/4.png?raw=true)
-![screenshot5](/doc-imgs/5.png?raw=true)
-![screenshot6](/doc-imgs/6.png?raw=true)

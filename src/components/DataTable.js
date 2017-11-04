@@ -19,10 +19,16 @@ const style = {
   }
 };
 
+
 class DataTable extends Component {
   constructor(props) {
     super(props);
 
+    this.handleChange = this.handleChange.bind(this);
+    this.expandComponent = this.expandComponent.bind(this);
+    this.expandColumnComponent = this.expandColumnComponent.bind(this);
+    this.isExpandableRow = this.isExpandableRow.bind(this);
+    this.onBeforeSaveCell = this.onBeforeSaveCell.bind(this);
     this.onAfterSaveCell = this.onAfterSaveCell.bind(this);
 
     this.cellEditMode = {
@@ -30,12 +36,6 @@ class DataTable extends Component {
       beforeSaveCell: this.onBeforeSaveCell,
       afterSaveCell: this.onAfterSaveCell
     };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.expandComponent = this.expandComponent.bind(this);
-    this.expandColumnComponent = this.expandColumnComponent.bind(this);
-    this.isExpandableRow = this.isExpandableRow.bind(this);
-    this.onBeforeSaveCell = this.onBeforeSaveCell.bind(this);
   }
 
   onAfterSaveCell(row) {

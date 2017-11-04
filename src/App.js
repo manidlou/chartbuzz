@@ -118,7 +118,7 @@ class App extends Component {
           for (var i = 0; i < rowDat.length; i += 1) {
             bgCols.push(colors[i].borderColor);
           }
-          datasets.push({hoverBackgroundColor: bgCols, backgroundColor: bgCols, data: rowDat});
+          datasets.push({label: r.label, hoverBackgroundColor: bgCols, backgroundColor: bgCols, data: rowDat});
         } else {
           datasets.push({label: r.label, fill: r.fill, borderColor: r.borderColor, backgroundColor: r.bgColor, data: rowDat});
         }
