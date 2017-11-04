@@ -77,16 +77,18 @@ class DataTable extends Component {
 
   render() {
     const table = (
-      <BootstrapTable data={this.props.rows} hover
-      options={{expandBy: 'column'}}
-      cellEdit={ this.cellEditMode }
-      expandableRow={this.isExpandableRow}
-      expandComponent={ this.expandComponent }
-      expandColumnOptions={{
-        expandColumnVisible: true,
-        expandColumnComponent: this.expandColumnComponent,
-        columnWidth: 40
-      }}>
+      <BootstrapTable
+        data={this.props.rows}
+        hover
+        options={{expandBy: 'column'}}
+        cellEdit={ this.cellEditMode }
+        expandableRow={this.isExpandableRow}
+        expandComponent={ this.expandComponent }
+        expandColumnOptions={{
+          expandColumnVisible: true,
+          expandColumnComponent: this.expandColumnComponent,
+          columnWidth: 40
+        }}>
       {
         this.props.cols.map((col, i) =>
           <TableHeaderColumn key={i} expandable={false} isKey={i === 0 ? true : false}

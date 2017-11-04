@@ -54,7 +54,6 @@ class App extends Component {
         rows: []
       },
       labels: '',
-      numDatasets: 0,
       chartData: {},
       chartOpts: {},
       showChart: false,
