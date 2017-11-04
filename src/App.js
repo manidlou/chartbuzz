@@ -3,7 +3,7 @@ import logo from './logo.png';
 import titleLogo from './logo2.png';
 import './App.css';
 
-import {Line, Bar, HorizontalBar, Radar} from 'react-chartjs-2';
+import {Line, Bar, HorizontalBar, Radar, Doughnut, Pie, Polar} from 'react-chartjs-2';
 import Rnd from 'react-rnd';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
@@ -14,16 +14,16 @@ import ChartTitle from './components/ChartTitle';
 import AxisLabels from './components/AxisLabels';
 import Actions from './components/Actions';
 
-const chartWidth = 800;
-const chartHeight = 400;
+// const chartWidth = 800;
+// const chartHeight = 400;
 
 const colors = [
   {borderColor: '#009688', bgColor: 'rgba(0,150,136, 0.2)'},
   {borderColor: '#ff5722', bgColor: 'rgba(255,87,34, 0.2)'},
   {borderColor: '#2196f3', bgColor: 'rgba(33,150,243, 0.2)'},
-  {borderColor: '#9c27b0', bgColor: 'rgba(156,39,176, 0.2)'},
-  {borderColor: '#ff9800', bgColor: 'rgba(255,152,0, 0.2)'},
   {borderColor: '#673ab7', bgColor: 'rgba(103,58,183, 0.2)'},
+  {borderColor: '#ff9800', bgColor: 'rgba(255,152,0, 0.2)'},
+  {borderColor: '#9c27b0', bgColor: 'rgba(156,39,176, 0.2)'},
   {borderColor: '#3f51b5', bgColor: 'rgba(63,81,181, 0.2)'},
   {borderColor: '#607d8b', bgColor: 'rgba(96,125,139, 0.2)'},
   {borderColor: '#00bcd4', bgColor: 'rgba(0,188,212, 0.2)'},
@@ -67,6 +67,7 @@ class App extends Component {
     this.importData = this.importData.bind(this);
     this.createChart = this.createChart.bind(this);
     this.handleChartOpts = this.handleChartOpts.bind(this);
+    this.handleChartData = this.handleChartData.bind(this);
   }
 
   handleChartOpts(chartType) {
@@ -99,10 +100,37 @@ class App extends Component {
       });
     }
 
-    if (chartType === 'Radar') {
+    if (chartType === 'Radar' || chartType === 'Doughnut' ||
+        chartType === 'Pie' || chartType === 'Polar') {
       if (opts.scales) delete opts.scales;
     }
     return opts;
+  }
+
+  handleChartData(chartType) {
+    const datasets = [];
+    this.state.tableData.rows.forEach(r => {
+      const rowDat = [];
+      if (r) {
+        Object.keys(r).filter(k => dsProps.indexOf(k) < 0).forEach(k => rowDat.push(r[k]));
+        if (chartType === 'Doughnut' || chartType === 'Pie' || chartType === 'Polar') {
+          const bgcols = [];
+          for (var i = 0; i < rowDat.length; i += 1) {
+            bgcols.push(colors[i].borderColor);
+          }
+          datasets.push({hoverBackgroundColor: bgcols, backgroundColor: bgcols, data: rowDat});
+        } else {
+          datasets.push({label: r.label, fill: r.fill, borderColor: r.borderColor, backgroundColor: r.bgColor, data: rowDat});
+        }
+      }
+    });
+
+    const chartData = {
+      labels: this.state.tableData.cols.filter(c => c !== 'i'),
+      datasets: datasets
+    };
+
+    return chartData;
   }
 
   handleInputChange(name, val) {
@@ -118,11 +146,13 @@ class App extends Component {
       });
 
       const opts = this.handleChartOpts(val);
+      const dat = this.handleChartData(val);
 
       this.setState({
         [name]: val,
         axisLabels: labels,
-        chartOpts: opts
+        chartOpts: opts,
+        chartData: dat
       });
     } else if (name === 'axisLabels') {
       this.setState({
@@ -210,25 +240,13 @@ class App extends Component {
   }
 
   createChart() {
-    const datasets = [];
-    this.state.tableData.rows.forEach(r => {
-      const dat = [];
-      if (r) {
-        Object.keys(r).filter(k => dsProps.indexOf(k) < 0).forEach(k => dat.push(r[k]));
-        datasets.push({label: r.label, fill: r.fill, borderColor: r.borderColor, backgroundColor: r.bgColor, data: dat});
-      }
-    });
-
-    const dat = {
-      labels: this.state.tableData.cols.filter(c => c !== 'i'),
-      datasets: datasets
-    };
     const opts = this.handleChartOpts(this.state.chartType);
+    const dat = this.handleChartData(this.state.chartType);
 
     this.setState({
       showChart: true,
-      chartData: dat,
       chartOpts: opts,
+      chartData: dat,
       showChartHint: ++this.state.showChartHint
     });
   }
@@ -236,10 +254,13 @@ class App extends Component {
   render() {
     let chart;
     if (this.state.showChart) {
-      if (this.state.chartType === 'Line') chart = <Line data={this.state.chartData} options={this.state.chartOpts} width={chartWidth} height={chartHeight}/>
-      if (this.state.chartType === 'Bar') chart = <Bar data={this.state.chartData} options={this.state.chartOpts} width={chartWidth} height={chartHeight}/>
-      if (this.state.chartType === 'HorizontalBar') chart = <HorizontalBar data={this.state.chartData} options={this.state.chartOpts} width={chartWidth} height={chartHeight}/>
-      if (this.state.chartType === 'Radar') chart = <Radar data={this.state.chartData} options={this.state.chartOpts} width={chartWidth} height={chartHeight}/>
+      if (this.state.chartType === 'Line') chart = <Line data={this.state.chartData} options={this.state.chartOpts}/>
+      if (this.state.chartType === 'Bar') chart = <Bar data={this.state.chartData} options={this.state.chartOpts}/>
+      if (this.state.chartType === 'HorizontalBar') chart = <HorizontalBar data={this.state.chartData} options={this.state.chartOpts}/>
+      if (this.state.chartType === 'Radar') chart = <Radar data={this.state.chartData} options={this.state.chartOpts}/>
+      if (this.state.chartType === 'Doughnut') chart = <Doughnut data={this.state.chartData} options={this.state.chartOpts}/>
+      if (this.state.chartType === 'Pie') chart = <Pie data={this.state.chartData} options={this.state.chartOpts}/>
+      if (this.state.chartType === 'Polar') chart = <Polar data={this.state.chartData} options={this.state.chartOpts}/>
     }
 
     if (this.state.showTableHint === 1) {
