@@ -112,7 +112,7 @@ class App extends Component {
     this.state.tableData.rows.forEach(r => {
       const rowDat = [];
       if (r) {
-        Object.keys(r).filter(k => dsProps.indexOf(k) < 0).forEach(k => rowDat.push(r[k]));
+        Object.keys(r).filter(k => dsProps.indexOf(k) < 0).forEach(k => {if (typeof r[k] === 'number') rowDat.push(r[k])});
         if (chartType === 'Doughnut' || chartType === 'Pie' || chartType === 'Polar') {
           const bgCols = [];
           for (var i = 0; i < rowDat.length; i += 1) {
@@ -126,7 +126,7 @@ class App extends Component {
     });
 
     const chartData = {
-      labels: this.state.tableData.cols.filter(c => c !== 'i'),
+      labels: this.state.tableData.cols.filter(c => c !== 'i' && c !== 'name'),
       datasets: datasets
     };
 
@@ -175,13 +175,13 @@ class App extends Component {
       row.unshift('i');
       let rowData = Object.assign({}, {
         i: i,
-        label: i.toString(),
+        label: row[1],
         borderColor: colors[i].borderColor,
         bgColor: colors[i].bgColor,
         fill: this.state.chartType === 'Line' ? false : true
       });
       for (var j = 1; j < cols.length; j += 1) {
-        Object.assign(rowData, {[cols[j]]: parseInt(row[j], 10)});
+        Object.assign(rowData, {[cols[j]]: j === 1 ? row[j] : parseInt(row[j], 10)});
       }
       rowsData.push(rowData);
     }
@@ -196,26 +196,22 @@ class App extends Component {
   }
 
   handleChangeRow(name, rowId, dat) {
+    const cols = this.state.tableData.cols
     const rows = this.state.tableData.rows;
     if (rows[rowId]) {
       if (name === 'color') {
-        Object.assign(rows[rowId], {
-          borderColor: dat.borderColor,
-          bgColor: dat.bgColor
-        });
+        rows[rowId].borderColor = dat.borderColor;
+        rows[rowId].bgColor = dat.bgColor;
       } else if (name === 'fill') {
-        Object.assign(rows[rowId], {
-          fill: dat
-        });
+        rows[rowId].fill = dat;
       } else if (name === 'label') {
-        Object.assign(rows[rowId], {
-          label: dat
-        });
+        rows[rowId].label = dat;
+        rows[rowId][cols[1]] = dat;
       }
 
       this.setState({
         tableData: {
-          cols: this.state.tableData.cols,
+          cols: cols,
           rows: rows
         }
       });
@@ -227,7 +223,7 @@ class App extends Component {
     const cols = this.state.tableData.cols;
     if (rows[row.i]) {
       for (var i = 1; i < cols.length; i += 1) {
-        Object.assign(rows[row.i], {[cols[i]]: parseInt(row[cols[i]], 10)});
+        Object.assign(rows[row.i], {[cols[i]]: i === 1 ? row[cols[i]] : parseInt(row[cols[i]], 10)});
       }
 
       this.setState({

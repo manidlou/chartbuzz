@@ -92,8 +92,10 @@ class Actions extends Component {
         </div>
 
         <ReactTooltip id="import" type="error">
-        <span>supported file types:</span>
           <div className="container">
+            <div>
+            <span>supported file types:</span>
+            <div className="container">
             <ul>
               <li>xlsx</li>
               <li>xlsb</li>
@@ -108,6 +110,38 @@ class Actions extends Component {
               <li>fods</li>
               <li>html</li>
             </ul>
+            </div>
+            </div>
+
+            <div className="vl"></div>
+
+            <div>
+            <span className="tableDataHint">preferred data format, for example:</span>
+            <br/>
+            <br/>
+            <table border="1" className="tableHint">
+              <tbody>
+                <tr>
+                  <td><strong>name</strong></td>
+                  <td><strong>Jan</strong></td>
+                  <td><strong>Feb</strong></td>
+                  <td><strong>Mar</strong></td>
+                </tr>
+                <tr>
+                  <td>dataset1</td>
+                  <td>24</td>
+                  <td>37</td>
+                  <td>12</td>
+                </tr>
+                <tr>
+                  <td>dataset2</td>
+                  <td>48</td>
+                  <td>72</td>
+                  <td>19</td>
+                  </tr>
+              </tbody>
+            </table>
+            </div>
           </div>
         </ReactTooltip>
 

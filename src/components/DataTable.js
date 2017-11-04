@@ -27,8 +27,8 @@ class DataTable extends Component {
 
     this.cellEditMode = {
       mode: 'click',
-      beforeSaveCell: this.onBeforeSaveCell, // a hook for before saving cell
-      afterSaveCell: this.onAfterSaveCell  // a hook for after saving cell
+      beforeSaveCell: this.onBeforeSaveCell,
+      afterSaveCell: this.onAfterSaveCell
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -39,12 +39,12 @@ class DataTable extends Component {
   }
 
   onAfterSaveCell(row) {
-    this.props.onChangeRowData(row);
+    return this.props.onChangeRowData(row);
   }
 
-  onBeforeSaveCell(row) {
-    // You can do any validation on here for editing value,
-    // return false for reject the editing
+  onBeforeSaveCell(row, colName, val) {
+    val = parseInt(val, 10);
+    if (Number.isNaN(val)) return false;
     return true;
   }
 
@@ -91,8 +91,16 @@ class DataTable extends Component {
         }}>
       {
         this.props.cols.map((col, i) =>
-          <TableHeaderColumn key={i} expandable={false} isKey={i === 0 ? true : false}
-            hidden={i === 0 ? true : false} dataField={col}>{col}</TableHeaderColumn>)
+          <TableHeaderColumn
+            key={i}
+            expandable={false}
+            isKey={i === 0 ? true : false}
+            hidden={i === 0 ? true : false}
+            editable={i === 1 ? false : true}
+            dataField={col}
+          >
+          {col}
+          </TableHeaderColumn>)
       }
       </BootstrapTable>
     );

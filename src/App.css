@@ -88,3 +88,18 @@
   left: 0;
   right: 0;
 }
+
+.tableHint {
+  border: 1px solid white;
+  margin-left: 50px;
+}
+
+.tableDataHint {
+  margin-left: 20px;
+}
+
+.vl {
+  border-left: 1px dashed white;
+  height: 100px;
+  margin-top: 10px;
+}

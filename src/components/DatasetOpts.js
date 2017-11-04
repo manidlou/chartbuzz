@@ -54,7 +54,6 @@ class DatasetOpts extends Component {
     super(props);
     this.state = {
       chartType: props.chartType,
-      datasetLabel: props.id,
       borderColor: this.props.row.borderColor,
       bgColor: this.props.row.bgColor,
       fill: props.chartType === 'Line' ? false : true
@@ -94,7 +93,7 @@ class DatasetOpts extends Component {
           hintText="dataset label.."
           floatingLabelText="dataset label"
           name="datasetLabel"
-          value={this.state.datasetLabel}
+          value={this.props.row.label}
           onChange={this.handleChange}
         />
         <br />
